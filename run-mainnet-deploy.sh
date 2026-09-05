@@ -26,21 +26,4 @@ DEPLOYMENT_ENV=mainnet ./scripts/verify-solana-source.sh
 DEPLOYMENT_ENV=mainnet ./scripts/verify-evm-source.sh
 ./scripts/wire-mainnet.sh
 DEPLOYMENT_ENV=mainnet ./scripts/handoff-admins.sh
-
-tmp="$(mktemp "$CHECKPOINT_FILE.tmp.XXXXXX")"
-jq '
-  if .solanaAdapter.sourceVerification.localHashMatch != true then error("Solana binary hash proof missing")
-  elif .evmOft.sourceVerification != "PASS" then error("EVM source verification missing")
-  elif .layerZero.configurationStatus != "PASS" or .layerZero.assertionStatus != "PASS" then error("LayerZero wiring proof missing")
-  elif .solanaAdapter.programUpgradeAuthority != .administration.solanaSquads.vault then error("Solana upgrade authority handoff missing")
-  elif .solanaAdapter.admin != .administration.solanaSquads.vault then error("Solana OFT admin handoff missing")
-  elif .solanaAdapter.delegate != .administration.solanaSquads.vault then error("Solana LayerZero delegate handoff missing")
-  elif .evmOft.owner != .administration.robinhoodSafe.address then error("EVM ownership handoff missing")
-  elif .evmOft.delegate != .administration.robinhoodSafe.address then error("EVM LayerZero delegate handoff missing")
-  else .status="LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF COMPLETE; CANARY PENDING STONKS" |
-       .updatedAt=(now|todateiso8601)
-  end' "$CHECKPOINT_FILE" >"$tmp"
-mv "$tmp" "$CHECKPOINT_FILE"
-
-note "PASS: mainnet bridge infrastructure is deployed, wired, verified, and held by the temporary 1-of-1 admin containers"
-note "PENDING: capped round-trip canary requires STONKS in an operator-controlled Solana token account"
+./scripts/finalize-mainnet.sh

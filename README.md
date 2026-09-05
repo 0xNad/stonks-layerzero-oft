@@ -67,7 +67,7 @@ The authorized resumable production pipeline is:
 
 It refreshes official LayerZero metadata and live chain identities, creates the two admin containers, deploys the Solana program and Adapter, proves the local/deployed executable hash match, deploys and verifies the Robinhood contract source, wires and asserts both pathways, then hands all configured authority to Squads and Safe.
 
-The mainnet checkpoint is `deployments/mainnet.json`; detailed readback is `deployments/mainnet-configuration.json`. Every irreversible address is checkpointed, and a rerun adopts a matching deployment instead of creating a duplicate.
+The mainnet checkpoint is `deployments/mainnet.json`; detailed readback is `deployments/mainnet-configuration.json`, and the operator-facing summary is `MAINNET_RESULT.md`. Every irreversible address is checkpointed, and a rerun adopts a matching deployment instead of creating a duplicate.
 
 A capped mainnet round-trip canary is separate from infrastructure deployment. It needs a small amount of actual STONKS in an operator-controlled Solana token account. No treasury or liquidity funds should be sent to either bootstrap deployer.
 

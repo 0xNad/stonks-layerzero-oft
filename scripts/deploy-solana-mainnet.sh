@@ -77,7 +77,8 @@ if ! solana program show "$program_id" --url "$SOLANA_RPC_URL" --keypair "$SOLAN
     [[ -z "$signature" ]] || checkpoint_arg '.solanaAdapter.programDeploymentTransactions += [$sig]' --arg sig "$signature"
 fi
 
-program_json="$(solana program show "$program_id" --url "$SOLANA_RPC_URL" --output json)"
+program_json="$(solana program show "$program_id" --url "$SOLANA_RPC_URL" \
+    --keypair "$SOLANA_KEYPAIR_PATH" --output json)"
 upgrade_authority="$(jq -er '.authority' <<<"$program_json")"
 [[ "$upgrade_authority" == "$deployer" || "$upgrade_authority" == "$(json_get '.administration.solanaSquads.vault // empty')" ]] || \
     die "Unexpected program upgrade authority $upgrade_authority"

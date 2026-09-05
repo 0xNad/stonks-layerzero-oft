@@ -27,6 +27,7 @@
     "verify:solana:testnet": "scripts/verify-solana-source.sh",
     "verify:solana:mainnet": "DEPLOYMENT_ENV=mainnet scripts/verify-solana-source.sh",
     "build:solana:verifiable": "scripts/build-solana-verifiable.sh",
+    "finalize:mainnet": "scripts/finalize-mainnet.sh",
     "handoff:testnet": "scripts/handoff-admins.sh",
     "handoff:mainnet": "DEPLOYMENT_ENV=mainnet scripts/handoff-admins.sh"
   },

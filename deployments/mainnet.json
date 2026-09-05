@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-05T17:11:18.561Z",
-  "status": "PREPARED",
+  "updatedAt": "2026-09-05T17:26:27Z",
+  "status": "LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF COMPLETE; CANARY PENDING STONKS",
   "networkPair": "Solana Mainnet <-> Robinhood Chain Mainnet",
   "networks": {
     "solana": {
@@ -31,7 +31,7 @@
     "supplyRawBeforeBridge": "10002674891434906440",
     "mintAuthority": null,
     "freezeAuthority": null,
-    "observedSlot": 444572715
+    "observedSlot": 444573496
   },
   "administration": {
     "policy": "Temporary 1-of-1 bootstrap. Add permanent owners, raise thresholds, verify on-chain, and remove deployers before public launch.",
@@ -39,17 +39,21 @@
       "multisig": "E3h2JnuDVxR72jU7g4bHJWpgH4wNZMDBLh3BuFuwFLPc",
       "vault": "95u34bCkNg8tEtiJuENfLKzKrgJtqv8qwYzJW3vJbQ9V",
       "threshold": 1,
-      "members": ["CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix"],
+      "members": [
+        "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix"
+      ],
       "createTransaction": "5NDEzM5ELxa1sfQa2gzMZAo5W1RGAcMQMZ38Y7BWfb1DXQ5yqpNfexCkZKBeYdNqcBr6nPfLndA2HYjhGAxQCCYu",
-      "verifiedAt": "2026-09-05T17:11:14.801Z"
+      "verifiedAt": "2026-09-05T17:20:37.388Z"
     },
     "robinhoodSafe": {
       "address": "0x412E5001B698371f9F34b59fC13e7e8C5A9F3A27",
       "version": "1.5.0",
       "threshold": 1,
-      "owners": ["0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"],
+      "owners": [
+        "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"
+      ],
       "deploymentTransaction": "0x4f16f23588cb1ef5825503273baaf51f1fed93aa0b312d4caad6464888453cc5",
-      "verifiedAt": "2026-09-05T17:11:18.561Z"
+      "verifiedAt": "2026-09-05T17:20:40.784Z"
     }
   },
   "solanaAdapter": {
@@ -57,40 +61,60 @@
     "programDeploymentTransactions": [
       "4FC14ToBB9V411sVLXgZ5DswYS6bdoQxW1KejxkeptCGU8MM5bLH34fA1LLUj94cNuxRypYvLqiG2RR5fLJhq74e"
     ],
-    "programUpgradeAuthority": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+    "programUpgradeAuthority": "95u34bCkNg8tEtiJuENfLKzKrgJtqv8qwYzJW3vJbQ9V",
     "programBinaryBytes": 522520,
     "programBinarySha256": "80662a942a57e4f3a477599f5634f0f24cd26e66c7484d4691a63cf11ac3d07a",
-    "oftStore": null,
-    "escrow": null,
-    "admin": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
-    "delegate": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+    "oftStore": "HR7jWZ9h87CXyWppZbmvdHxwpZti2ru5txSr7LfmS9XM",
+    "escrow": "HEfjShoi4xbcgvFBfaKifzih1c2LsGfr1trUjaAuFc7D",
+    "admin": "95u34bCkNg8tEtiJuENfLKzKrgJtqv8qwYzJW3vJbQ9V",
+    "delegate": "95u34bCkNg8tEtiJuENfLKzKrgJtqv8qwYzJW3vJbQ9V",
     "createTransaction": null,
     "configurationTransactions": [],
-    "authorityHandoffTransactions": []
+    "authorityHandoffTransactions": [],
+    "sourceVerification": {
+      "status": "LOCAL_HASH_MATCH",
+      "localHashMatch": true,
+      "binaryHash": "08638531860e9bf3b394ae980511d5cac9a0cffbaa7cd2cad5ee509148665925",
+      "onchainHash": "08638531860e9bf3b394ae980511d5cac9a0cffbaa7cd2cad5ee509148665925",
+      "checkedAt": "2026-09-05T17:13:35Z",
+      "publicRepositoryVerification": "PENDING_PUBLIC_REPOSITORY"
+    }
   },
   "evmOft": {
-    "address": null,
-    "deploymentTransaction": null,
+    "address": "0x69C66594D67d47A480364B950ec9d6f674573727",
+    "deploymentTransaction": "0x46ea7f5fa1d4fcd04b188d2d1e8281a01e6a304686ec9faca85a8e82a482d9ec",
     "name": "Stonks",
     "symbol": "STONKS",
     "decimals": 18,
     "initialSupplyRaw": "0",
-    "owner": "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c",
-    "delegate": "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c",
-    "endpoint": "0x6f475642a6e85809b1c36fa62763669b1b48dd5b",
-    "sourceVerification": "PENDING",
-    "authorityHandoffTransactions": []
+    "owner": "0x412E5001B698371f9F34b59fC13e7e8C5A9F3A27",
+    "delegate": "0x412E5001B698371f9F34b59fC13e7e8C5A9F3A27",
+    "endpoint": "0x6F475642a6e85809B1c36Fa62763669b1b48DD5B",
+    "sourceVerification": "PASS",
+    "authorityHandoffTransactions": [],
+    "addressPreviouslyObserved": true,
+    "sourceVerificationProvider": "Sourcify",
+    "sourceVerificationMatch": "exact_match",
+    "sourceVerificationMatchId": "47162561",
+    "sourceVerificationUrl": "https://sourcify.dev/server/v2/contract/4663/0x69C66594D67d47A480364B950ec9d6f674573727",
+    "sourceVerificationCheckedAt": "2026-09-05T17:26:27Z",
+    "sourceVerifiedAt": "2026-09-05T17:15:15Z"
   },
   "layerZero": {
     "confirmations": {
       "robinhoodToSolana": 15,
       "solanaToRobinhood": 32
     },
-    "requiredDvns": ["LayerZero Labs"],
-    "optionalDvns": ["Nethermind", "Horizen"],
+    "requiredDvns": [
+      "LayerZero Labs"
+    ],
+    "optionalDvns": [
+      "Nethermind",
+      "Horizen"
+    ],
     "optionalDvnThreshold": 1,
-    "configurationStatus": "PENDING",
-    "assertionStatus": "PENDING"
+    "configurationStatus": "PASS",
+    "assertionStatus": "PASS"
   },
   "canary": {
     "status": "PENDING_STONKS_FUNDING",
@@ -104,5 +128,16 @@
   "externalBlockers": [
     "A mainnet round-trip canary requires a small amount of STONKS in an operator-controlled Solana token account after deployment."
   ],
-  "sourceCommit": "3942ecafc880bb7dd6778f0aba1e1065591f6891"
+  "sourceCommit": "5301912da12f272abd7746febb686fba33bc37db",
+  "adminHandoff": {
+    "status": "PASS",
+    "verifiedAt": "2026-09-05T17:22:52Z",
+    "checks": {
+      "solanaProgramUpgradeAuthority": true,
+      "solanaOftAdmin": true,
+      "solanaLayerZeroDelegate": true,
+      "evmOwner": true,
+      "evmLayerZeroDelegate": true
+    }
+  }
 }
