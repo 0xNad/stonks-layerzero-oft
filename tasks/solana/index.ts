@@ -25,7 +25,7 @@ import {
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults'
 import { createWeb3JsEddsa } from '@metaplex-foundation/umi-eddsa-web3js'
 import { toWeb3JsInstruction, toWeb3JsPublicKey } from '@metaplex-foundation/umi-web3js-adapters'
-import { AddressLookupTableAccount, Connection } from '@solana/web3.js'
+import { AddressLookupTableAccount, Connection, Keypair } from '@solana/web3.js'
 import { getSimulationComputeUnits } from '@solana-developers/helpers'
 import { backOff } from 'exponential-backoff'
 
@@ -36,6 +36,22 @@ import { EndpointId, endpointIdToNetwork } from '@layerzerolabs/lz-definitions'
 import { OftPDA } from '@layerzerolabs/oft-v2-solana-sdk'
 
 import { DebugLogger, KnownWarnings, createSolanaConnectionFactory } from '../common/utils'
+
+const getConfiguredSolanaKeypair = async (readOnly = false): Promise<Keypair> => {
+    if (readOnly) return Keypair.generate()
+
+    const keypairPath = process.env.SOLANA_KEYPAIR_PATH
+    if (keypairPath) {
+        const secretKey = JSON.parse(readFileSync(keypairPath, 'utf8')) as number[]
+        const keypair = Keypair.fromSecretKey(Uint8Array.from(secretKey))
+        console.info(
+            `Using Solana keypair from SOLANA_KEYPAIR_PATH (${keypairPath}) => ${keypair.publicKey.toBase58()}`
+        )
+        return keypair
+    }
+
+    return getSolanaKeypair()
+}
 
 export const DEFAULT_LOOKUP_TABLE_ADDRESS: Partial<Record<EndpointId, PublicKey>> = {
     [EndpointId.SOLANA_V2_MAINNET]: publicKey('AokBxha6VMLLgf97B5VYHEtqztamWmYERBmmFvjuTzJB'),
@@ -55,7 +71,7 @@ type DeriveConnectionParams =
 export const deriveConnection = async (eid: EndpointId, params: DeriveConnectionParams = false) => {
     // line below is for backwards compatibility (second param was initially only readOnly, updated to an object)
     const { readOnly = false, noopSigner } = typeof params === 'object' ? params : { readOnly: params }
-    const keypair = await getSolanaKeypair(readOnly)
+    const keypair = await getConfiguredSolanaKeypair(readOnly)
     const connectionFactory = createSolanaConnectionFactory()
     const connection = await connectionFactory(eid)
     const umi = createUmi(connection.rpcEndpoint).use(mplToolbox())
@@ -72,7 +88,7 @@ export const deriveConnection = async (eid: EndpointId, params: DeriveConnection
 
 export const useWeb3Js = async () => {
     // note: if we are okay with exporting getSolanaKeypair, then useWeb3js can be removed
-    const keypair = await getSolanaKeypair()
+    const keypair = await getConfiguredSolanaKeypair()
     return {
         web3JsKeypair: keypair,
     }

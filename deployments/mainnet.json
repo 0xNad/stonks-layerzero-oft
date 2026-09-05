@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-05T00:00:00Z",
+  "updatedAt": "2026-09-05T17:09:37Z",
   "status": "PREPARED",
   "networkPair": "Solana Mainnet <-> Robinhood Chain Mainnet",
   "networks": {
@@ -31,31 +31,35 @@
     "supplyRawBeforeBridge": "10002674891434906440",
     "mintAuthority": null,
     "freezeAuthority": null,
-    "observedSlot": 444557003
+    "observedSlot": 444572715
   },
   "administration": {
     "policy": "Temporary 1-of-1 bootstrap. Add permanent owners, raise thresholds, verify on-chain, and remove deployers before public launch.",
     "solanaSquads": {
-      "multisig": null,
-      "vault": null,
+      "multisig": "E3h2JnuDVxR72jU7g4bHJWpgH4wNZMDBLh3BuFuwFLPc",
+      "vault": "95u34bCkNg8tEtiJuENfLKzKrgJtqv8qwYzJW3vJbQ9V",
       "threshold": 1,
       "members": ["CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix"],
-      "createTransaction": null
+      "createTransaction": "5NDEzM5ELxa1sfQa2gzMZAo5W1RGAcMQMZ38Y7BWfb1DXQ5yqpNfexCkZKBeYdNqcBr6nPfLndA2HYjhGAxQCCYu",
+      "verifiedAt": "2026-09-05T17:08:57.227Z"
     },
     "robinhoodSafe": {
-      "address": null,
+      "address": "0x412E5001B698371f9F34b59fC13e7e8C5A9F3A27",
       "version": "1.5.0",
       "threshold": 1,
       "owners": ["0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"],
-      "deploymentTransaction": null
+      "deploymentTransaction": "0x4f16f23588cb1ef5825503273baaf51f1fed93aa0b312d4caad6464888453cc5",
+      "verifiedAt": "2026-09-05T17:09:15.391Z"
     }
   },
   "solanaAdapter": {
     "programId": "6Zxe2WqArgpooREBXPFmyA3fGywgBRccFtYYePZ96tTF",
-    "programDeploymentTransactions": [],
+    "programDeploymentTransactions": [
+      "4FC14ToBB9V411sVLXgZ5DswYS6bdoQxW1KejxkeptCGU8MM5bLH34fA1LLUj94cNuxRypYvLqiG2RR5fLJhq74e"
+    ],
     "programUpgradeAuthority": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
-    "programBinaryBytes": 571888,
-    "programBinarySha256": null,
+    "programBinaryBytes": 522520,
+    "programBinarySha256": "80662a942a57e4f3a477599f5634f0f24cd26e66c7484d4691a63cf11ac3d07a",
     "oftStore": null,
     "escrow": null,
     "admin": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
@@ -99,5 +103,6 @@
   },
   "externalBlockers": [
     "A mainnet round-trip canary requires a small amount of STONKS in an operator-controlled Solana token account after deployment."
-  ]
+  ],
+  "sourceCommit": "2c3628bc9beb6065c7827189df9357cff94f2af4"
 }
