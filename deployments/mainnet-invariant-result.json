@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-05T17:48:51.462Z",
+  "checks": {
+    "mintAuthorityRevoked": true,
+    "freezeAuthorityRevoked": true,
+    "solanaSupplyUnchanged": true,
+    "normalizedEscrowEqualsEvmSupply": true,
+    "solanaEscrowHasNoDust": true,
+    "evmSupplyHasNoDust": true,
+    "evmUserOwnsOutstandingSupply": true,
+    "evmMetadataCorrect": true,
+    "evmOwnerCorrect": true,
+    "evmEndpointCorrect": true,
+    "solanaDustCleaning": true,
+    "evmDustCleaning": true,
+    "canonicalStonksMint": true,
+    "messagesDeliveredBidirectionally": true,
+    "sharedAmountsMatch": true,
+    "solanaLockDeltaCorrect": true,
+    "evmMintDeltaCorrect": true,
+    "evmBurnDeltaCorrect": true,
+    "solanaReleaseDeltaCorrect": true,
+    "solanaUserRoundTripRestored": true,
+    "escrowRoundTripRestored": true,
+    "evmSupplyRoundTripRestored": true,
+    "evmUserRoundTripRestored": true
+  },
+  "values": {
+    "solanaMintSupplyRaw": "10002674891434906440",
+    "solanaSupplyBeforeRaw": "10002674891434906440",
+    "solanaUserRaw": "1032430180",
+    "solanaEscrowRaw": "0",
+    "normalizedEscrowShared": "0",
+    "evmTotalSupplyRaw": "0",
+    "evmUserRaw": "0",
+    "normalizedEvmSupplyShared": "0",
+    "solanaConversionRate": "1000",
+    "evmConversionRate": "1000000000000"
+  }
+}

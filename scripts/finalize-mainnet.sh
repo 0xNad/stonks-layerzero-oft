@@ -46,11 +46,21 @@ jq --arg safe "$safe" --arg vault "$vault" '
            evmLayerZeroDelegate:true
          }
        } |
-       .status="LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF COMPLETE; CANARY PENDING STONKS" |
+       if .canary.status == "PASS" and
+          ([.canary.messages[] | select(.direction=="SOLANA_TO_EVM" and .status=="DELIVERED")] | length) >= 1 and
+          ([.canary.messages[] | select(.direction=="EVM_TO_SOLANA" and .status=="DELIVERED")] | length) >= 1
+       then .status="LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF AND ROUND-TRIP CANARY COMPLETE" |
+            .externalBlockers=((.externalBlockers // []) | map(select(test("round-trip canary"; "i") | not)))
+       else .status="LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF COMPLETE; CANARY PENDING STONKS"
+       end |
        .updatedAt=(now|todateiso8601)
   end' "$CHECKPOINT_FILE" >"$tmp"
 mv "$tmp" "$CHECKPOINT_FILE"
 
 pnpm ts-node --transpile-only scripts/render-mainnet-result.ts
 note "PASS: mainnet bridge infrastructure is deployed, wired, verified, and held by the temporary 1-of-1 admin containers"
-note "PENDING: capped round-trip canary requires STONKS in an operator-controlled Solana token account"
+if [[ "$(json_get '.canary.status')" == "PASS" ]]; then
+    note "PASS: capped STONKS round-trip canary and supply invariants are complete"
+else
+    note "PENDING: capped round-trip canary requires STONKS in an operator-controlled Solana token account"
+fi

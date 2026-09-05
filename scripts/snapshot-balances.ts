@@ -1,22 +1,33 @@
 import fs from 'fs'
 import path from 'path'
 
-import { TOKEN_PROGRAM_ID, getAccount, getMint } from '@solana/spl-token'
+import { TOKEN_PROGRAM_ID, getAccount, getAssociatedTokenAddressSync, getMint } from '@solana/spl-token'
 import { Connection, PublicKey } from '@solana/web3.js'
 import { ethers } from 'ethers'
 
 const root = path.resolve(__dirname, '..')
 const checkpoint = JSON.parse(
-    fs.readFileSync(process.env.CHECKPOINT_FILE || path.join(root, 'deployments', 'testnet.json'), 'utf8')
+    fs.readFileSync(
+        process.env.CHECKPOINT_FILE ||
+            path.join(root, 'deployments', process.env.DEPLOYMENT_ENV === 'mainnet' ? 'mainnet.json' : 'testnet.json'),
+        'utf8'
+    )
 )
-const solanaRpc = process.env.RPC_URL_SOLANA_TESTNET || process.env.RPC_URL_SOLANA || 'https://api.devnet.solana.com'
-const evmRpc = process.env.RPC_URL_ROBINHOOD_TESTNET || 'https://rpc.testnet.chain.robinhood.com'
+const isMainnet = process.env.DEPLOYMENT_ENV === 'mainnet'
+const solanaRpc = isMainnet
+    ? process.env.RPC_URL_SOLANA_MAINNET || process.env.RPC_URL_SOLANA || 'https://api.mainnet-beta.solana.com'
+    : process.env.RPC_URL_SOLANA_TESTNET || process.env.RPC_URL_SOLANA || 'https://api.devnet.solana.com'
+const evmRpc = isMainnet
+    ? process.env.RPC_URL_ROBINHOOD_MAINNET || 'https://rpc.mainnet.chain.robinhood.com'
+    : process.env.RPC_URL_ROBINHOOD_TESTNET || 'https://rpc.testnet.chain.robinhood.com'
 
 async function main(): Promise<void> {
     const solana = new Connection(solanaRpc, 'confirmed')
     const evm = new ethers.providers.JsonRpcProvider(evmRpc, checkpoint.networks.evm.chainId)
     const mintPk = new PublicKey(checkpoint.token.mint)
-    const userAtaPk = new PublicKey(checkpoint.token.deployerAta)
+    const userAtaPk = checkpoint.token.deployerAta
+        ? new PublicKey(checkpoint.token.deployerAta)
+        : getAssociatedTokenAddressSync(mintPk, new PublicKey(checkpoint.wallets.solana), false, TOKEN_PROGRAM_ID)
     const escrowPk = new PublicKey(checkpoint.solanaAdapter.escrow)
     const [mint, userAta, escrow, solanaGas] = await Promise.all([
         getMint(solana, mintPk, 'confirmed', TOKEN_PROGRAM_ID),

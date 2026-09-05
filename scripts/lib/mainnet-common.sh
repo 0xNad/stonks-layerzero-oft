@@ -90,6 +90,16 @@ evm_balance_wei() {
     node -e 'console.log(BigInt(process.argv[1]).toString())' "$hex"
 }
 
+decimal_to_units() {
+    local amount="$1" decimals="$2"
+    node -e '
+const [whole, fraction = ""] = process.argv[1].split(".")
+const decimals = Number(process.argv[2])
+if (fraction.length > decimals) throw new Error("too many decimal places")
+console.log((BigInt(whole) * 10n ** BigInt(decimals) + BigInt((fraction + "0".repeat(decimals)).slice(0, decimals) || "0")).toString())
+' "$amount" "$decimals"
+}
+
 ensure_solana_mainnet_deployment_file() {
     local output="$ROOT_DIR/deployments/solana-mainnet/OFT.json"
     [[ -f "$output" ]] && return 0

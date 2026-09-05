@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-05T17:26:27Z",
-  "status": "LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF COMPLETE; CANARY PENDING STONKS",
+  "updatedAt": "2026-09-05T17:48:51.462Z",
+  "status": "LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF AND ROUND-TRIP CANARY COMPLETE",
   "networkPair": "Solana Mainnet <-> Robinhood Chain Mainnet",
   "networks": {
     "solana": {
@@ -31,7 +31,8 @@
     "supplyRawBeforeBridge": "10002674891434906440",
     "mintAuthority": null,
     "freezeAuthority": null,
-    "observedSlot": 444573496
+    "observedSlot": 444573496,
+    "deployerAta": "BrZRpuys9wa7saQJWJMBMZP8cmGeKQEwvWhk1GXpQLCv"
   },
   "administration": {
     "policy": "Temporary 1-of-1 bootstrap. Add permanent owners, raise thresholds, verify on-chain, and remove deployers before public launch.",
@@ -39,9 +40,7 @@
       "multisig": "E3h2JnuDVxR72jU7g4bHJWpgH4wNZMDBLh3BuFuwFLPc",
       "vault": "95u34bCkNg8tEtiJuENfLKzKrgJtqv8qwYzJW3vJbQ9V",
       "threshold": 1,
-      "members": [
-        "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix"
-      ],
+      "members": ["CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix"],
       "createTransaction": "5NDEzM5ELxa1sfQa2gzMZAo5W1RGAcMQMZ38Y7BWfb1DXQ5yqpNfexCkZKBeYdNqcBr6nPfLndA2HYjhGAxQCCYu",
       "verifiedAt": "2026-09-05T17:20:37.388Z"
     },
@@ -49,9 +48,7 @@
       "address": "0x412E5001B698371f9F34b59fC13e7e8C5A9F3A27",
       "version": "1.5.0",
       "threshold": 1,
-      "owners": [
-        "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"
-      ],
+      "owners": ["0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"],
       "deploymentTransaction": "0x4f16f23588cb1ef5825503273baaf51f1fed93aa0b312d4caad6464888453cc5",
       "verifiedAt": "2026-09-05T17:20:40.784Z"
     }
@@ -97,7 +94,7 @@
     "sourceVerificationMatch": "exact_match",
     "sourceVerificationMatchId": "47162561",
     "sourceVerificationUrl": "https://sourcify.dev/server/v2/contract/4663/0x69C66594D67d47A480364B950ec9d6f674573727",
-    "sourceVerificationCheckedAt": "2026-09-05T17:26:27Z",
+    "sourceVerificationCheckedAt": "2026-09-05T17:47:42Z",
     "sourceVerifiedAt": "2026-09-05T17:15:15Z"
   },
   "layerZero": {
@@ -105,33 +102,265 @@
       "robinhoodToSolana": 15,
       "solanaToRobinhood": 32
     },
-    "requiredDvns": [
-      "LayerZero Labs"
-    ],
-    "optionalDvns": [
-      "Nethermind",
-      "Horizen"
-    ],
+    "requiredDvns": ["LayerZero Labs"],
+    "optionalDvns": ["Nethermind", "Horizen"],
     "optionalDvnThreshold": 1,
     "configurationStatus": "PASS",
     "assertionStatus": "PASS"
   },
   "canary": {
-    "status": "PENDING_STONKS_FUNDING",
-    "messages": [],
-    "invariants": "PENDING"
+    "status": "PASS",
+    "messages": [
+      {
+        "direction": "SOLANA_TO_EVM",
+        "amountUi": "1",
+        "amountLocalRaw": "1000000000",
+        "localDecimals": 9,
+        "amountSharedRaw": "1000000",
+        "sharedDecimals": 6,
+        "destinationAddress": "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c",
+        "quotedNativeFee": "4805213",
+        "quotedNativeFeeUnit": "lamports",
+        "sourceEid": 30168,
+        "destinationEid": 30416,
+        "sourceTransaction": "2Z4xHAjnT2trGTFXtLXzNyHt9U1ByoQfJuuHuDrhbaGZtJ67TpsUsEHLGztbm57fvwn1nSHoenjRtuByupsH852k",
+        "destinationTransaction": "0xf82092fd3af676025c5d026bdbda98b71b6f4b7379e966bcdb8ba5785096e86d",
+        "guid": "0x62f525848e301b2824f18982da35aeb0d0e66ba4ea51b50513c3ba4f7a8c1a99",
+        "status": "DELIVERED",
+        "before": {
+          "capturedAt": "2026-09-05T17:42:00.402Z",
+          "solana": {
+            "userTokenRaw": "1032430180",
+            "escrowRaw": "0",
+            "mintSupplyRaw": "10002674891434906440",
+            "walletLamports": "1141423863"
+          },
+          "evm": {
+            "userTokenRaw": "0",
+            "totalSupplyRaw": "0",
+            "walletWei": "21734653044965952"
+          }
+        },
+        "sourceBlock": "444578987",
+        "destinationBlock": 55307913,
+        "deliveredAt": "2026-09-05T17:42:56.000Z",
+        "pathway": {
+          "srcEid": 30168,
+          "dstEid": 30416,
+          "sender": {
+            "address": "HR7jWZ9h87CXyWppZbmvdHxwpZti2ru5txSr7LfmS9XM",
+            "chain": "solana"
+          },
+          "receiver": {
+            "address": "0x69c66594d67d47a480364b950ec9d6f674573727",
+            "chain": "robinhood"
+          },
+          "id": "30168-30416-HR7jWZ9h87CXyWppZbmvdHxwpZti2ru5txSr7LfmS9XM-0x69c66594d67d47a480364b950ec9d6f674573727",
+          "nonce": 1
+        },
+        "deliveryConfig": {
+          "error": false,
+          "receiveLibrary": "0xe1844c5D63a9543023008D332Bd3d2e6f1FE1043",
+          "sendLibrary": "2XgGZG4oP29U3w5h4nTk1V2LFHL23zKDPJjs3psGzLKQ",
+          "inboundConfig": {
+            "confirmations": 32,
+            "requiredDVNCount": 1,
+            "optionalDVNCount": 2,
+            "optionalDVNThreshold": 1,
+            "requiredDVNs": ["0xd01ae6905d48315f7be10c7330aecf8360ef5b12"],
+            "requiredDVNNames": ["LayerZero Labs"],
+            "optionalDVNs": [
+              "0x0ffe02df012299a370d5dd69298a5826eacafdf8",
+              "0x1258a278519c7f4bd997a9c3bfd4aa802a028d89"
+            ],
+            "optionalDVNNames": ["Nethermind", "Horizen"]
+          },
+          "outboundConfig": {
+            "confirmations": 32,
+            "requiredDVNCount": 1,
+            "optionalDVNCount": 2,
+            "optionalDVNThreshold": 1,
+            "requiredDVNs": ["4VDjp6XQaxoZf5RGwiPU9NR1EXSZn2TP4ATMmiSzLfhb"],
+            "requiredDVNNames": ["LayerZero Labs"],
+            "optionalDVNs": [
+              "GPjyWr8vCotGuFubDpTxDxy9Vj1ZeEN4F2dwRmFiaGab",
+              "HR9NQKK1ynW9NzgdM37dU5CBtqRHTukmbMKS7qkwSkHX"
+            ],
+            "optionalDVNNames": ["Nethermind", "Horizen"],
+            "executor": "AwrbHeCyniXaQhiJZkLhgWdUCteeWSGaSN1sTfLiY7xK"
+          },
+          "ulnSendVersion": "V302",
+          "ulnReceiveVersion": "V302"
+        },
+        "scanApi": "https://scan.layerzero-api.com/v1/messages/tx/2Z4xHAjnT2trGTFXtLXzNyHt9U1ByoQfJuuHuDrhbaGZtJ67TpsUsEHLGztbm57fvwn1nSHoenjRtuByupsH852k",
+        "after": {
+          "capturedAt": "2026-09-05T17:43:02.866Z",
+          "solana": {
+            "userTokenRaw": "32430180",
+            "escrowRaw": "1000000000",
+            "mintSupplyRaw": "10002674891434906440",
+            "walletLamports": "1136613650"
+          },
+          "evm": {
+            "userTokenRaw": "1000000000000000000",
+            "totalSupplyRaw": "1000000000000000000",
+            "walletWei": "21734653044965952"
+          }
+        }
+      },
+      {
+        "direction": "EVM_TO_SOLANA",
+        "amountUi": "1",
+        "amountLocalRaw": "1000000000000000000",
+        "localDecimals": 18,
+        "amountSharedRaw": "1000000",
+        "sharedDecimals": 6,
+        "destinationAddress": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+        "quotedNativeFee": "405913787732910",
+        "quotedNativeFeeUnit": "wei",
+        "sourceEid": 30416,
+        "destinationEid": 30168,
+        "sourceTransaction": "0x84a99af15f21e60511ec325fd05508cf91c02de6a4409344af3234ba2d3c726b",
+        "destinationTransaction": "5WVeqhQDwxiwiueYPtZwUQhMyih1kodniB1uQpTD8HCKXUpJgoFUocmmMoHyMFvxbH2czLa1Bs9Hroo7JLu8Le8Q",
+        "guid": "0x726de72734641fb2d1f8d609ae21abba8adf96e486d470d94ae4d8096a5c7735",
+        "status": "DELIVERED",
+        "before": {
+          "capturedAt": "2026-09-05T17:43:16.206Z",
+          "solana": {
+            "userTokenRaw": "32430180",
+            "escrowRaw": "1000000000",
+            "mintSupplyRaw": "10002674891434906440",
+            "walletLamports": "1136613650"
+          },
+          "evm": {
+            "userTokenRaw": "1000000000000000000",
+            "totalSupplyRaw": "1000000000000000000",
+            "walletWei": "21734653044965952"
+          }
+        },
+        "sourceBlock": "55308266",
+        "destinationBlock": 444579284,
+        "deliveredAt": "2026-09-05T17:43:47.000Z",
+        "pathway": {
+          "srcEid": 30416,
+          "dstEid": 30168,
+          "sender": {
+            "address": "0x69c66594d67d47a480364b950ec9d6f674573727",
+            "chain": "robinhood"
+          },
+          "receiver": {
+            "address": "HR7jWZ9h87CXyWppZbmvdHxwpZti2ru5txSr7LfmS9XM",
+            "chain": "solana"
+          },
+          "id": "30416-30168-0x69c66594d67d47a480364b950ec9d6f674573727-HR7jWZ9h87CXyWppZbmvdHxwpZti2ru5txSr7LfmS9XM",
+          "nonce": 1
+        },
+        "deliveryConfig": {
+          "error": false,
+          "receiveLibrary": "7a4WjyR8VZ7yZz5XJAKm39BUGn5iT9CKcv2pmG9tdXVH",
+          "sendLibrary": "0xC39161c743D0307EB9BCc9FEF03eeb9Dc4802de7",
+          "inboundConfig": {
+            "confirmations": 15,
+            "requiredDVNCount": 1,
+            "optionalDVNCount": 2,
+            "optionalDVNThreshold": 1,
+            "requiredDVNs": ["4VDjp6XQaxoZf5RGwiPU9NR1EXSZn2TP4ATMmiSzLfhb"],
+            "requiredDVNNames": ["LayerZero Labs"],
+            "optionalDVNs": [
+              "GPjyWr8vCotGuFubDpTxDxy9Vj1ZeEN4F2dwRmFiaGab",
+              "HR9NQKK1ynW9NzgdM37dU5CBtqRHTukmbMKS7qkwSkHX"
+            ],
+            "optionalDVNNames": ["Nethermind", "Horizen"]
+          },
+          "outboundConfig": {
+            "confirmations": 15,
+            "requiredDVNCount": 1,
+            "optionalDVNCount": 2,
+            "optionalDVNThreshold": 1,
+            "requiredDVNs": ["0xd01ae6905d48315f7be10c7330aecf8360ef5b12"],
+            "requiredDVNNames": ["LayerZero Labs"],
+            "optionalDVNs": [
+              "0x0ffe02df012299a370d5dd69298a5826eacafdf8",
+              "0x1258a278519c7f4bd997a9c3bfd4aa802a028d89"
+            ],
+            "optionalDVNNames": ["Nethermind", "Horizen"],
+            "executor": "0x4208D6E27538189bB48E603D6123A94b8Abe0A0b"
+          },
+          "ulnSendVersion": "V302",
+          "ulnReceiveVersion": "V302"
+        },
+        "scanApi": "https://scan.layerzero-api.com/v1/messages/tx/0x84a99af15f21e60511ec325fd05508cf91c02de6a4409344af3234ba2d3c726b",
+        "after": {
+          "capturedAt": "2026-09-05T17:44:02.236Z",
+          "solana": {
+            "userTokenRaw": "1032430180",
+            "escrowRaw": "0",
+            "mintSupplyRaw": "10002674891434906440",
+            "walletLamports": "1136613650"
+          },
+          "evm": {
+            "userTokenRaw": "0",
+            "totalSupplyRaw": "0",
+            "walletWei": "21198837108681042"
+          }
+        }
+      }
+    ],
+    "invariants": {
+      "status": "PASS",
+      "normalizedEscrowShared": "0",
+      "evmSupplyShared": "0",
+      "solanaSupplyBeforeRaw": "10002674891434906440",
+      "solanaSupplyAfterRaw": "10002674891434906440",
+      "solanaUserRaw": "1032430180",
+      "solanaEscrowRaw": "0",
+      "checkedAt": "2026-09-05T17:48:51.462Z",
+      "checks": {
+        "mintAuthorityRevoked": true,
+        "freezeAuthorityRevoked": true,
+        "solanaSupplyUnchanged": true,
+        "normalizedEscrowEqualsEvmSupply": true,
+        "solanaEscrowHasNoDust": true,
+        "evmSupplyHasNoDust": true,
+        "evmUserOwnsOutstandingSupply": true,
+        "evmMetadataCorrect": true,
+        "evmOwnerCorrect": true,
+        "evmEndpointCorrect": true,
+        "solanaDustCleaning": true,
+        "evmDustCleaning": true,
+        "canonicalStonksMint": true,
+        "messagesDeliveredBidirectionally": true,
+        "sharedAmountsMatch": true,
+        "solanaLockDeltaCorrect": true,
+        "evmMintDeltaCorrect": true,
+        "evmBurnDeltaCorrect": true,
+        "solanaReleaseDeltaCorrect": true,
+        "solanaUserRoundTripRestored": true,
+        "escrowRoundTripRestored": true,
+        "evmSupplyRoundTripRestored": true,
+        "evmUserRoundTripRestored": true
+      }
+    },
+    "funding": {
+      "status": "PASS",
+      "method": "Jupiter exact-in swap",
+      "sourceAsset": "SOL",
+      "inputLamports": "2900",
+      "receivedRaw": "1032430180",
+      "receivedUi": "1.03243018",
+      "transaction": "3T2FLDPFDrYgYC7VMXxvBDvz9QzpR4ZBbcUDnv6MJgpP21P4jacgp12ajWm3uVQqkY48hZNW6v6X53pHxeqGsLpx",
+      "confirmedSlot": "444578229"
+    }
   },
   "funding": {
     "solanaLamports": "5000000000",
     "robinhoodWei": "23973351150081952"
   },
-  "externalBlockers": [
-    "A mainnet round-trip canary requires a small amount of STONKS in an operator-controlled Solana token account after deployment."
-  ],
+  "externalBlockers": [],
   "sourceCommit": "5301912da12f272abd7746febb686fba33bc37db",
   "adminHandoff": {
     "status": "PASS",
-    "verifiedAt": "2026-09-05T17:22:52Z",
+    "verifiedAt": "2026-09-05T17:47:56Z",
     "checks": {
       "solanaProgramUpgradeAuthority": true,
       "solanaOftAdmin": true,

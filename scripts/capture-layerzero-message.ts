@@ -2,8 +2,10 @@ import fs from 'fs'
 import path from 'path'
 
 const root = path.resolve(__dirname, '..')
-const checkpointPath = process.env.CHECKPOINT_FILE || path.join(root, 'deployments', 'testnet.json')
-const api = 'https://scan-testnet.layerzero-api.com/v1'
+const isMainnet = process.env.DEPLOYMENT_ENV === 'mainnet'
+const checkpointPath =
+    process.env.CHECKPOINT_FILE || path.join(root, 'deployments', isMainnet ? 'mainnet.json' : 'testnet.json')
+const api = isMainnet ? 'https://scan.layerzero-api.com/v1' : 'https://scan-testnet.layerzero-api.com/v1'
 
 const args = new Map<string, string>()
 for (let i = 2; i < process.argv.length; i += 2) args.set(process.argv[i], process.argv[i + 1])
@@ -55,12 +57,11 @@ async function main(): Promise<void> {
     }
 
     const checkpoint = JSON.parse(fs.readFileSync(checkpointPath, 'utf8'))
-    const index = checkpoint.messages.findIndex(
-        (entry: any) => entry.sourceTransaction?.toLowerCase() === sourceTx.toLowerCase()
-    )
+    const messages = isMainnet ? checkpoint.canary.messages : checkpoint.messages
+    const index = messages.findIndex((entry: any) => entry.sourceTransaction?.toLowerCase() === sourceTx.toLowerCase())
     if (index < 0) throw new Error(`Source transaction ${sourceTx} is not checkpointed`)
-    checkpoint.messages[index] = {
-        ...checkpoint.messages[index],
+    messages[index] = {
+        ...messages[index],
         guid: message.guid,
         status: message.status.name,
         sourceTransaction: message.source.tx.txHash,
@@ -74,7 +75,7 @@ async function main(): Promise<void> {
     }
     checkpoint.updatedAt = new Date().toISOString()
     writeJsonAtomic(checkpointPath, checkpoint)
-    console.log(JSON.stringify(checkpoint.messages[index], null, 2))
+    console.log(JSON.stringify(messages[index], null, 2))
 }
 
 main().catch((error) => {

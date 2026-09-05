@@ -2,7 +2,7 @@
 
 ## Final status
 
-LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF COMPLETE; CANARY PENDING STONKS
+LIVE — DEPLOYED, WIRED, VERIFIED, ADMIN-HANDOFF AND ROUND-TRIP CANARY COMPLETE
 
 ## Canonical asset
 
@@ -56,9 +56,22 @@ Authority readbacks:
 - Robinhood OFT owner: PASS
 - Robinhood LayerZero delegate: PASS
 
+## Mainnet round-trip canary
+
+- Funding swap: 3T2FLDPFDrYgYC7VMXxvBDvz9QzpR4ZBbcUDnv6MJgpP21P4jacgp12ajWm3uVQqkY48hZNW6v6X53pHxeqGsLpx
+- STONKS acquired: 1.03243018
+- Canary status: PASS
+- Supply invariants: PASS
+- Final Solana escrow raw: 0
+- Final Robinhood supply raw: 0
+
+| Direction     | Amount | GUID                                                               | Source transaction                                                                       | Destination transaction                                                                  | Status    |
+| ------------- | -----: | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | --------- |
+| SOLANA_TO_EVM |      1 | 0x62f525848e301b2824f18982da35aeb0d0e66ba4ea51b50513c3ba4f7a8c1a99 | 2Z4xHAjnT2trGTFXtLXzNyHt9U1ByoQfJuuHuDrhbaGZtJ67TpsUsEHLGztbm57fvwn1nSHoenjRtuByupsH852k | 0xf82092fd3af676025c5d026bdbda98b71b6f4b7379e966bcdb8ba5785096e86d                       | DELIVERED |
+| EVM_TO_SOLANA |      1 | 0x726de72734641fb2d1f8d609ae21abba8adf96e486d470d94ae4d8096a5c7735 | 0x84a99af15f21e60511ec325fd05508cf91c02de6a4409344af3234ba2d3c726b                       | 5WVeqhQDwxiwiueYPtZwUQhMyih1kodniB1uQpTD8HCKXUpJgoFUocmmMoHyMFvxbH2czLa1Bs9Hroo7JLu8Le8Q | DELIVERED |
+
 ## Remaining launch gates
 
-- A mainnet round-trip canary requires a small amount of STONKS in an operator-controlled Solana token account after deployment.
 - Add permanent owners, raise both multisig thresholds, verify them on-chain, and remove the throwaway deployers before public launch.
 
-Infrastructure deployment is complete. A mainnet asset-transfer claim is not complete until the funded canary has delivered in both directions and the supply invariants pass.
+The funded mainnet canary delivered in both directions and the independent supply invariants passed.

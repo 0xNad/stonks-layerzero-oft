@@ -69,7 +69,7 @@ It refreshes official LayerZero metadata and live chain identities, creates the 
 
 The mainnet checkpoint is `deployments/mainnet.json`; detailed readback is `deployments/mainnet-configuration.json`, and the operator-facing summary is `MAINNET_RESULT.md`. Every irreversible address is checkpointed, and a rerun adopts a matching deployment instead of creating a duplicate.
 
-A capped mainnet round-trip canary is separate from infrastructure deployment. It needs a small amount of actual STONKS in an operator-controlled Solana token account. No treasury or liquidity funds should be sent to either bootstrap deployer.
+A capped 1 STONKS mainnet round-trip canary has delivered from Solana to Robinhood and back, and the independent supply invariants passed. The transactions and balance evidence are recorded in `MAINNET_RESULT.md` and `deployments/mainnet.json`. This proves the live bridge path; it is not a substitute for replacing the temporary owners and raising both multisig thresholds before public launch. No treasury or liquidity funds should be sent to either bootstrap deployer.
 
 ## Source and reproducibility
 
