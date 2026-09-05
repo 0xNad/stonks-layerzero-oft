@@ -71,7 +71,7 @@ The mainnet checkpoint is `deployments/mainnet.json`; detailed readback is `depl
 
 A capped 1 STONKS mainnet round-trip canary has delivered from Solana to Robinhood and back, and the independent supply invariants passed. The transactions and balance evidence are recorded in `MAINNET_RESULT.md` and `deployments/mainnet.json`. This proves the live bridge path; it is not a substitute for replacing the temporary owners and raising both multisig thresholds before public launch. No treasury or liquidity funds should be sent to either bootstrap deployer.
 
-For a capped, operator-assisted test with a nontechnical STONKS team member, follow [`docs/NONTECHNICAL_MAINNET_TEST.md`](docs/NONTECHNICAL_MAINNET_TEST.md). There is no public wallet-connected bridge page yet, so this procedure must not be presented as self-service bridging.
+For a capped self-serve test, a nontechnical STONKS team member can give [`docs/NONTECHNICAL_MAINNET_TEST.md`](docs/NONTECHNICAL_MAINNET_TEST.md) to their local coding agent. Their agent creates and controls throwaway wallets, executes both bridge directions after explicit confirmations, and records the evidence without exposing private keys. No bridge operator is involved.
 
 ## Source and reproducibility
 

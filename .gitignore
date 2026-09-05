@@ -4,6 +4,7 @@
 !.env.example
 .mainnet-secrets/
 .testnet-secrets/
+.tester-secrets/
 secrets/
 *.key
 *.pem

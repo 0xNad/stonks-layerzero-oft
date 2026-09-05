@@ -1,104 +1,191 @@
-# STONKS bridge test for a nontechnical team member
+# Self-serve STONKS bridge test with a coding agent
 
-This is an **operator-assisted mainnet acceptance test** using 1 STONKS. It lets a STONKS team member receive the bridged token on Robinhood Chain and receive the canonical token back on Solana without handling code or sharing wallet secrets.
+This test is fully self-serve. A STONKS team member funds two throwaway wallets created by their own local coding agent. Their agent signs and submits the real LayerZero transfer in both directions. No bridge operator, admin access, or hosted website is required.
 
-The bridge contracts are live, but there is not yet a public wallet-connected bridge page. The operator signs the two bridge transactions in this test. The team member only uses Phantom and MetaMask or Rabby for ordinary wallet actions.
+The test uses real mainnet assets. Cap it at exactly 1 STONKS.
 
 ## Safety rules
 
-- Use exactly 1 STONKS.
-- Never share a seed phrase, private key, recovery phrase, JSON key file, or screen showing one.
-- The operator needs only the member's two **public receiving addresses**.
-- Confirm the operator and all addresses in the STONKS team's normal private communication channel before moving tokens.
-- Stop if a wallet displays a different token contract, network, or amount from this guide.
-- This test proves the live bridge path. It is not approval for a public launch while the admin multisigs remain temporary 1-of-1.
+- Use fresh throwaway wallets created locally for this test.
+- Never paste a seed phrase, private key, recovery phrase, or wallet JSON into chat.
+- The coding agent must never print, upload, commit, or transmit wallet secrets.
+- Store test keys only in the ignored `.tester-secrets/` directory with restrictive permissions.
+- Do not use a treasury, multisig, or permanent personal wallet as the signing wallet.
+- The agent may execute only the two OFT transfer operations. It must not deploy, upgrade, wire, pause, change ownership, or perform an admin operation.
+- The agent must verify every network and deployment address before signing.
+- The agent must obtain a read-only fee quote and wait for the exact confirmation phrase before each transaction.
 
-## Official addresses
+## Official deployment
 
+- Repository: `https://github.com/0xNad/stonks-layerzero-oft`
 - Canonical Solana STONKS mint: `stonksUpymwbn1rBBpZmd1u92ydJ2asGw1y7capGMzW`
+- Solana token program: `TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA`
+- Solana OFT program: `6Zxe2WqArgpooREBXPFmyA3fGywgBRccFtYYePZ96tTF`
 - Solana OFT Store: `HR7jWZ9h87CXyWppZbmvdHxwpZti2ru5txSr7LfmS9XM`
 - Solana escrow: `HEfjShoi4xbcgvFBfaKifzih1c2LsGfr1trUjaAuFc7D`
 - Robinhood STONKS contract: `0x69C66594D67d47A480364B950ec9d6f674573727`
-- Current test operator EVM address: `0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c`
+- Solana LayerZero endpoint ID: `30168`
+- Robinhood LayerZero endpoint ID: `30416`
+- Robinhood chain ID: `4663`
+- Robinhood RPC: `https://rpc.mainnet.chain.robinhood.com`
+- Robinhood explorer: `https://robinhoodchain.blockscout.com`
 
-## Before the call
+The agent must compare these values with `deployments/mainnet.json` and live chain readbacks before signing.
 
-The team member needs:
+## Step-by-step instructions for the team member
 
-1. Phantom or Solflare with a Solana mainnet wallet.
-2. MetaMask or Rabby with an EVM wallet.
-3. A small amount of ETH on Robinhood Chain for one normal token transfer. The operator can fund this test gas if necessary.
-4. A live call or private STONKS team chat with the bridge operator.
+### 1. Start a local coding agent
 
-Do not send either wallet's private key to the operator. Public wallet addresses are safe to share.
+Open Codex, Claude Code, or another coding agent that can use a local terminal and access the internet. Paste the complete prompt at the end of this guide.
 
-## Part 1: Prepare Robinhood Chain
+### 2. Receive two public funding addresses
 
-1. Open MetaMask or Rabby.
-2. Add a network with these values:
-   - Network name: `Robinhood Chain`
-   - RPC URL: `https://rpc.mainnet.chain.robinhood.com`
-   - Chain ID: `4663`
-   - Currency symbol: `ETH`
-   - Block explorer: `https://robinhoodchain.blockscout.com`
-3. Switch the wallet to Robinhood Chain.
-4. Import a custom token using:
-   - Token contract: `0x69C66594D67d47A480364B950ec9d6f674573727`
-   - Symbol: `STONKS`
-   - Decimals: `18`
-5. Copy the wallet's public `0x...` address.
-6. Open Phantom or Solflare and copy the Solana public address.
-7. Send both public addresses to the operator in the agreed STONKS team channel.
+The agent will:
 
-## Part 2: Receive 1 STONKS on Robinhood Chain
+1. clone the public repository;
+2. inspect the deployment evidence;
+3. create `.tester-secrets/` locally;
+4. generate a throwaway Solana wallet;
+5. generate a throwaway EVM wallet; and
+6. show only their public addresses.
 
-1. The operator reads the EVM address back to the team member and confirms it character by character at the beginning and end.
-2. The operator bridges exactly 1 STONKS from Solana to that EVM address.
-3. The operator sends the Solana source transaction and LayerZero Scan links to the member.
-4. Open `https://layerzeroscan.com` and paste the source transaction into the search box.
-5. Wait for the message to show `Delivered`.
-6. Open MetaMask or Rabby on Robinhood Chain.
-7. Confirm that the imported STONKS token shows a balance of exactly 1 STONKS.
-8. Open the address on `https://robinhoodchain.blockscout.com` and confirm the same token balance.
+The private keys remain in local ignored files. The member never sends them to anybody.
 
-Do not continue if the LayerZero message is not delivered or the received token contract differs from the official Robinhood STONKS contract above.
+### 3. Fund the wallets
 
-## Part 3: Return the token to Solana
+Send to the new Solana public address:
 
-The current test is operator-assisted because there is no public bridge page yet.
+- exactly 1 STONKS; and
+- enough SOL for the quoted LayerZero and Solana transaction fees.
 
-1. Confirm that the EVM wallet has enough Robinhood Chain ETH for one normal token transfer.
-2. In MetaMask or Rabby, select STONKS and press **Send**.
-3. Enter the current test operator EVM address:
-   `0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c`
-4. Enter exactly `1` STONKS.
-5. Review the network, token contract, destination and amount, then approve the transaction.
-6. Send the resulting transaction link to the operator.
-7. The operator confirms receipt and bridges exactly 1 STONKS from Robinhood Chain to the member's Solana address.
-8. The operator sends the Robinhood source transaction and LayerZero Scan links to the member.
-9. Search the source transaction on `https://layerzeroscan.com` and wait for `Delivered`.
-10. Open Phantom or Solflare and confirm receipt of 1 canonical STONKS.
-11. If the token is hidden, use the wallet's token-management screen and verify the mint is exactly:
-    `stonksUpymwbn1rBBpZmd1u92ydJ2asGw1y7capGMzW`
+Send enough Robinhood Chain ETH to the new EVM public address for the quoted return fee and EVM transaction fee.
+
+Use `0.01 SOL` and `0.002 ETH` as cautious starting allowances. After funding creates the required token account, the agent obtains current read-only quotes and requests a top-up if either allowance is insufficient. Current quotes always control, and leftovers can be refunded.
+
+Tell the agent `funded`. The agent independently verifies all three balances on-chain.
+
+### 4. Send 1 STONKS from Solana to Robinhood
+
+The agent performs a read-only LayerZero quote and displays:
+
+- `Solana -> Robinhood`;
+- amount: `1 STONKS`;
+- the two throwaway public addresses;
+- the live native fee;
+- the canonical Solana mint; and
+- the Robinhood OFT contract.
+
+If everything is correct, reply exactly:
+
+`CONFIRM SOLANA TO ROBINHOOD 1 STONKS`
+
+The agent then signs with the local throwaway Solana key, submits the OFT send, and waits for LayerZero status `DELIVERED`.
+
+### 5. Verify receipt on Robinhood
+
+The agent verifies that the throwaway EVM wallet owns exactly 1 STONKS issued by:
+
+`0x69C66594D67d47A480364B950ec9d6f674573727`
+
+It reports:
+
+- the Solana source transaction;
+- the Robinhood destination transaction; and
+- the LayerZero message link.
+
+### 6. Send 1 STONKS from Robinhood back to Solana
+
+The agent performs another read-only quote and displays the reverse transfer details.
+
+If everything is correct, reply exactly:
+
+`CONFIRM ROBINHOOD TO SOLANA 1 STONKS`
+
+The agent signs with the local throwaway EVM key, submits the OFT send, and waits for `DELIVERED`.
+
+### 7. Verify the completed round trip
+
+The agent verifies and reports:
+
+- exactly 1 canonical STONKS returned to the throwaway Solana wallet;
+- the throwaway EVM STONKS balance returned to zero;
+- both LayerZero messages are `DELIVERED`;
+- the canonical Solana supply did not change;
+- the Solana escrow and Robinhood OFT supply moved consistently on both legs; and
+- all four chain transactions and both LayerZero message links.
+
+### 8. Return leftovers
+
+Give the agent normal Solana and EVM refund addresses if desired. The agent must show the refund amounts and request separate confirmation before returning leftover SOL or ETH.
+
+The agent must ask before deleting `.tester-secrets/`. Deleting it permanently destroys access to the throwaway wallets.
+
+## Copy-and-paste prompt for the coding agent
+
+```text
+Run a fully self-serve, capped STONKS mainnet bridge round-trip for me.
+
+Repository:
+https://github.com/0xNad/stonks-layerzero-oft
+
+First clone the repository and read README.md, MAINNET_RESULT.md, deployments/mainnet.json, layerzero.config.ts, and docs/NONTECHNICAL_MAINNET_TEST.md in full.
+
+Use exactly 1 STONKS. You are authorized to create two local throwaway wallets and, only after the exact confirmations below, send 1 STONKS from Solana to Robinhood Chain and then send the same 1 STONKS back to Solana.
+
+Non-negotiable safety rules:
+- Work only in this repository and use the recorded mainnet deployment.
+- Create fresh Solana and EVM throwaway wallets under .tester-secrets/.
+- Add .tester-secrets/ to .git/info/exclude as a second safeguard.
+- Set directory mode 700 and secret file mode 600.
+- Never display, upload, commit, log, or transmit any private key, seed phrase, recovery phrase, mnemonic, or wallet JSON content.
+- Show me only public addresses.
+- Never ask me to paste a private key into chat.
+- Do not modify any tracked file or deployment checkpoint.
+- Do not deploy, upgrade, wire, pause, configure peers or DVNs, change owners or delegates, or invoke any admin operation.
+- The only authorized writes are the two LayerZero OFT send transactions after my exact confirmation and separately confirmed refund transactions.
+- Refuse to sign if any network, address, bytecode, balance, simulation, or quote check fails.
+
+Verify before funding:
+- Solana mainnet genesis is 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d.
+- Robinhood eth_chainId is 0x1237, decimal 4663.
+- Canonical mint is stonksUpymwbn1rBBpZmd1u92ydJ2asGw1y7capGMzW.
+- Solana OFT program is 6Zxe2WqArgpooREBXPFmyA3fGywgBRccFtYYePZ96tTF.
+- Solana OFT Store is HR7jWZ9h87CXyWppZbmvdHxwpZti2ru5txSr7LfmS9XM.
+- Solana escrow is HEfjShoi4xbcgvFBfaKifzih1c2LsGfr1trUjaAuFc7D.
+- Robinhood OFT is 0x69C66594D67d47A480364B950ec9d6f674573727.
+- LayerZero EIDs are 30168 for Solana and 30416 for Robinhood.
+
+Prepare the repository and silently create the wallets. Then give me:
+1. the throwaway Solana public address;
+2. the throwaway EVM public address;
+3. the initial funding request: exactly 1 STONKS, 0.01 SOL, and 0.002 Robinhood ETH; and
+4. public explorer links for both wallets.
+
+Wait until I reply funded. Verify the balances independently, obtain current read-only LayerZero quotes for both directions, and request a top-up if the funded gas allowance is insufficient.
+
+Before the first send, show the complete Solana-to-Robinhood transaction summary and wait until I reply exactly:
+CONFIRM SOLANA TO ROBINHOOD 1 STONKS
+
+Use the repository's LayerZero OFT send task directly with my throwaway Solana signer, destination EID 30416, and my throwaway EVM address. Do not use an operator-specific wrapper or change deployments/mainnet.json. Wait for DELIVERED and verify the EVM token balance.
+
+Before the return send, show the complete Robinhood-to-Solana transaction summary and wait until I reply exactly:
+CONFIRM ROBINHOOD TO SOLANA 1 STONKS
+
+Use the repository's LayerZero OFT send task directly with my throwaway EVM signer, destination EID 30168, and my throwaway Solana address. Wait for DELIVERED.
+
+Finally verify the round-trip balances and supply invariants. Give me all four chain transaction links, both LayerZero message links, fees paid, starting balances, final balances, and an explicit PASS or FAIL. Do not delete the throwaway keys or refund leftovers without separate confirmation.
+```
 
 ## Pass criteria
 
-The test passes only when all of the following are true:
+The test passes only when:
 
-- The Solana-to-Robinhood LayerZero message says `Delivered`.
-- The member receives exactly 1 STONKS from the official Robinhood contract.
-- The Robinhood-to-Solana LayerZero message says `Delivered`.
-- The member receives exactly 1 STONKS from the canonical Solana mint.
-- Both source and destination transactions are recorded in the test notes.
-- No seed phrase or private key was shared.
+- the member funded and controlled the test wallets;
+- no wallet secret was exposed;
+- the member explicitly confirmed both bridge sends;
+- both LayerZero messages say `DELIVERED`;
+- exactly 1 STONKS arrived on Robinhood and returned to Solana;
+- the balance and supply invariants pass; and
+- the agent provides all transaction and message links.
 
-## What this does and does not prove
-
-This verifies real mainnet delivery, wallet visibility and the round-trip asset path. It does **not** test self-service bridge usability because the operator signs the crosschain sends.
-
-A genuinely self-service nontechnical test requires either:
-
-- listing STONKS on the Stargate frontend; or
-- deploying a STONKS bridge page with Phantom/Solflare and MetaMask/Rabby connections.
-
-The test operator should record the member's two public addresses, both source transactions, both destination transactions, both LayerZero message links, start and finish balances, and the final pass/fail result.
+This is self-serve agent-assisted bridging. A hosted wallet page is optional convenience, not a testing requirement.
