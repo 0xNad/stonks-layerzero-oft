@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-05T17:09:37Z",
+  "updatedAt": "2026-09-05T17:11:18.561Z",
   "status": "PREPARED",
   "networkPair": "Solana Mainnet <-> Robinhood Chain Mainnet",
   "networks": {
@@ -41,7 +41,7 @@
       "threshold": 1,
       "members": ["CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix"],
       "createTransaction": "5NDEzM5ELxa1sfQa2gzMZAo5W1RGAcMQMZ38Y7BWfb1DXQ5yqpNfexCkZKBeYdNqcBr6nPfLndA2HYjhGAxQCCYu",
-      "verifiedAt": "2026-09-05T17:08:57.227Z"
+      "verifiedAt": "2026-09-05T17:11:14.801Z"
     },
     "robinhoodSafe": {
       "address": "0x412E5001B698371f9F34b59fC13e7e8C5A9F3A27",
@@ -49,7 +49,7 @@
       "threshold": 1,
       "owners": ["0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"],
       "deploymentTransaction": "0x4f16f23588cb1ef5825503273baaf51f1fed93aa0b312d4caad6464888453cc5",
-      "verifiedAt": "2026-09-05T17:09:15.391Z"
+      "verifiedAt": "2026-09-05T17:11:18.561Z"
     }
   },
   "solanaAdapter": {
@@ -104,5 +104,5 @@
   "externalBlockers": [
     "A mainnet round-trip canary requires a small amount of STONKS in an operator-controlled Solana token account after deployment."
   ],
-  "sourceCommit": "2c3628bc9beb6065c7827189df9357cff94f2af4"
+  "sourceCommit": "3942ecafc880bb7dd6778f0aba1e1065591f6891"
 }

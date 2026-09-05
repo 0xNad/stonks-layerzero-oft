@@ -10,7 +10,6 @@ assert_mainnets
 
 deployer="$(json_get '.wallets.solana')"
 [[ "$(solana-keygen pubkey "$SOLANA_KEYPAIR_PATH")" == "$deployer" ]] || die "Mainnet Solana key does not match checkpoint"
-[[ "$(solana_balance_lamports "$deployer")" -ge 3800000000 ]] || die "Mainnet Solana deployer has insufficient balance"
 
 mint_result="$(solana_rpc getAccountInfo "$(jq -nc --arg mint "$STONKS_MINT" '[$mint,{encoding:"jsonParsed",commitment:"finalized"}]')")"
 mint_owner="$(jq -er '.result.value.owner' <<<"$mint_result")"
@@ -29,6 +28,15 @@ require_file "$program_keypair"
 [[ "$(stat -f '%Lp' "$program_keypair")" == "600" ]] || die "$program_keypair must have mode 600"
 program_id="$(solana-keygen pubkey "$program_keypair")"
 [[ "$program_id" == "$(json_get '.solanaAdapter.programId')" ]] || die "Program ID does not match protected checkpoint"
+
+if solana program show "$program_id" --url "$SOLANA_RPC_URL" --keypair "$SOLANA_KEYPAIR_PATH" >/dev/null 2>&1; then
+    minimum_lamports=500000000
+else
+    minimum_lamports=3800000000
+fi
+current_lamports="$(solana_balance_lamports "$deployer")"
+[[ "$current_lamports" -ge "$minimum_lamports" ]] || \
+    die "Mainnet Solana deployer has $current_lamports lamports; requires at least $minimum_lamports"
 
 buffer_keypair="${OFT_PROGRAM_BUFFER_KEYPAIR_PATH:-.mainnet-secrets/oft-program-buffer.json}"
 if [[ ! -f "$buffer_keypair" ]]; then
