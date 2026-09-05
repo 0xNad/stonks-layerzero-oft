@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-05",
+  "privateMaterial": "macOS Keychain only; never committed",
+  "wallets": {
+    "solanaBootstrapDeployer": {
+      "address": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+      "network": "Solana Mainnet",
+      "currentBalanceLamports": "5000000000",
+      "minimumFundingLamports": "5000000000",
+      "recommendedFundingLamports": "6000000000",
+      "allowedAssets": ["SOL"],
+      "mustNotReceive": [
+        "STONKS",
+        "STNK",
+        "liquidity capital",
+        "treasury assets"
+      ]
+    },
+    "robinhoodBootstrapDeployer": {
+      "address": "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c",
+      "network": "Robinhood Chain Mainnet",
+      "chainId": 4663,
+      "currentBalanceWei": "23973351150081952",
+      "minimumFundingWei": "10000000000000000",
+      "recommendedFundingWei": "20000000000000000",
+      "allowedAssets": ["native ETH on Robinhood Chain"],
+      "mustNotReceive": [
+        "ETH on Ethereum Mainnet",
+        "ETH on Arbitrum One",
+        "STONKS",
+        "liquidity capital",
+        "treasury assets"
+      ]
+    }
+  },
+  "fundingEvidence": {
+    "solana": {
+      "balanceLamports": "5000000000",
+      "commitment": "finalized",
+      "observedSlot": 444554863
+    },
+    "robinhood": {
+      "route": "Relay",
+      "sourceChainId": 42161,
+      "destinationChainId": 4663,
+      "sourceAmountWei": "24000000000000000",
+      "destinationAmountWei": "23973351150081952",
+      "sourceTransactionHash": "0x48d37ded973493e154b7d470b4c8df005e3e23ad3df1021a11ffd92f5458b69b",
+      "destinationTransactionHash": "0x1d6fccc67d1c4e1cd8fef79a8ef22b92c523caf68c4668638d31727e433eeeca",
+      "relayRequestId": "0x17886228885a1f0e26f8498e5a36088de08e2ed8b8894f3a13381fcb7dd0ddf9",
+      "relayStatus": "success"
+    }
+  },
+  "fundingStatus": "SOLANA_MINIMUM_CONFIRMED; ROBINHOOD_RECOMMENDED_CONFIRMED",
+  "authorityPolicy": "Temporary 1-of-1 bootstrap only. Add permanent owners, raise thresholds, verify on-chain, and remove deployers before public launch."
+}

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-05T17:01:41.351Z",
+  "checks": {
+    "mintAuthorityRevoked": true,
+    "freezeAuthorityRevoked": true,
+    "solanaSupplyUnchanged": true,
+    "circulatingPlusEscrowEqualsFixedSupply": true,
+    "normalizedEscrowEqualsEvmSupply": true,
+    "solanaEscrowHasNoDust": true,
+    "evmSupplyHasNoDust": true,
+    "evmUserOwnsOutstandingSupply": true,
+    "evmMetadataCorrect": true,
+    "evmOwnerCorrect": true,
+    "evmEndpointCorrect": true,
+    "solanaDustCleaning": true,
+    "evmDustCleaning": true
+  },
+  "values": {
+    "solanaMintSupplyRaw": "1000000000000000000",
+    "solanaSupplyBeforeRaw": "1000000000000000000",
+    "solanaUserRaw": "999999390000000000",
+    "solanaEscrowRaw": "610000000000",
+    "normalizedEscrowShared": "610000000",
+    "evmTotalSupplyRaw": "610000000000000000000",
+    "evmUserRaw": "610000000000000000000",
+    "normalizedEvmSupplyShared": "610000000",
+    "solanaConversionRate": "1000",
+    "evmConversionRate": "1000000000000"
+  }
+}

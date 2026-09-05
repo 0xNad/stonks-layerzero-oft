@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-05T00:00:00Z",
+  "status": "PREPARED",
+  "networkPair": "Solana Mainnet <-> Robinhood Chain Mainnet",
+  "networks": {
+    "solana": {
+      "name": "Solana Mainnet",
+      "eid": 30168,
+      "rpc": "https://api.mainnet-beta.solana.com"
+    },
+    "evm": {
+      "name": "Robinhood Chain Mainnet",
+      "eid": 30416,
+      "chainId": 4663,
+      "rpc": "https://rpc.mainnet.chain.robinhood.com",
+      "explorer": "https://robinhoodchain.blockscout.com"
+    }
+  },
+  "wallets": {
+    "solana": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+    "evm": "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"
+  },
+  "token": {
+    "name": "Stonks",
+    "symbol": "STONKS",
+    "mint": "stonksUpymwbn1rBBpZmd1u92ydJ2asGw1y7capGMzW",
+    "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "decimals": 9,
+    "sharedDecimals": 6,
+    "supplyRawBeforeBridge": "10002674891434906440",
+    "mintAuthority": null,
+    "freezeAuthority": null,
+    "observedSlot": 444557003
+  },
+  "administration": {
+    "policy": "Temporary 1-of-1 bootstrap. Add permanent owners, raise thresholds, verify on-chain, and remove deployers before public launch.",
+    "solanaSquads": {
+      "multisig": null,
+      "vault": null,
+      "threshold": 1,
+      "members": ["CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix"],
+      "createTransaction": null
+    },
+    "robinhoodSafe": {
+      "address": null,
+      "version": "1.5.0",
+      "threshold": 1,
+      "owners": ["0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c"],
+      "deploymentTransaction": null
+    }
+  },
+  "solanaAdapter": {
+    "programId": "6Zxe2WqArgpooREBXPFmyA3fGywgBRccFtYYePZ96tTF",
+    "programDeploymentTransactions": [],
+    "programUpgradeAuthority": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+    "programBinaryBytes": 571888,
+    "programBinarySha256": null,
+    "oftStore": null,
+    "escrow": null,
+    "admin": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+    "delegate": "CvukDFaypgVZzpcksdnJTWJbVgybYeeUZzsBhANXj1ix",
+    "createTransaction": null,
+    "configurationTransactions": [],
+    "authorityHandoffTransactions": []
+  },
+  "evmOft": {
+    "address": null,
+    "deploymentTransaction": null,
+    "name": "Stonks",
+    "symbol": "STONKS",
+    "decimals": 18,
+    "initialSupplyRaw": "0",
+    "owner": "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c",
+    "delegate": "0x53B4fA15cCc227c85a07531Dd4a830a8345a5e7c",
+    "endpoint": "0x6f475642a6e85809b1c36fa62763669b1b48dd5b",
+    "sourceVerification": "PENDING",
+    "authorityHandoffTransactions": []
+  },
+  "layerZero": {
+    "confirmations": {
+      "robinhoodToSolana": 15,
+      "solanaToRobinhood": 32
+    },
+    "requiredDvns": ["LayerZero Labs"],
+    "optionalDvns": ["Nethermind", "Horizen"],
+    "optionalDvnThreshold": 1,
+    "configurationStatus": "PENDING",
+    "assertionStatus": "PENDING"
+  },
+  "canary": {
+    "status": "PENDING_STONKS_FUNDING",
+    "messages": [],
+    "invariants": "PENDING"
+  },
+  "funding": {
+    "solanaLamports": "5000000000",
+    "robinhoodWei": "23973351150081952"
+  },
+  "externalBlockers": [
+    "A mainnet round-trip canary requires a small amount of STONKS in an operator-controlled Solana token account after deployment."
+  ]
+}

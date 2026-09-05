@@ -1,0 +1,20 @@
+[toolchain]
+anchor_version = "0.31.1"
+
+[features]
+seeds = false
+resolution = false
+skip-lint = false
+
+[programs.localnet]
+oft = "6Zxe2WqArgpooREBXPFmyA3fGywgBRccFtYYePZ96tTF"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "./.testnet-secrets/solana-deployer.json"
+
+[scripts]
+test = "npx jest test/anchor"

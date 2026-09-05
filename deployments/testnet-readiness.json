@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "checkedAt": "2026-09-05T15:58:24.991Z",
+  "metadataUrl": "https://metadata.layerzero-api.com/v1/metadata",
+  "environment": "testnet",
+  "pathway": {
+    "solanaEid": 40168,
+    "robinhoodEid": 40451,
+    "confirmations": {
+      "robinhoodToSolana": 15,
+      "solanaToRobinhood": 32
+    },
+    "requiredDvns": ["LayerZero Labs", "Paxos"],
+    "optionalDvns": [],
+    "optionalDvnThreshold": 0
+  },
+  "robinhood": {
+    "chainId": 46630,
+    "metadataKey": "robinhood-testnet",
+    "protocol": {
+      "endpointV2": "0x3acaaf60502791d199a5a5f0b173d78229ebfe32",
+      "sendUln302": "0x45841dd1ca50265da7614fc43a361e526c0e6160",
+      "receiveUln302": "0xd682ecf100f6f4284138aa925348633b0611ae21",
+      "executor": "0x701f3927871efcea1235db722f9e608ae120d243"
+    },
+    "requiredDvns": [
+      {
+        "name": "LayerZero Labs",
+        "address": "0xa78a78a13074ed93ad447a26ec57121f29e8fec2"
+      },
+      {
+        "name": "Paxos",
+        "address": "0x771d83e953ca8f113f02f18206ecf8bb93da3f0a"
+      }
+    ],
+    "optionalDvns": [],
+    "endpointReportedEid": 40451,
+    "endpointSupportsSolanaEid": true
+  },
+  "solana": {
+    "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+    "metadataKey": "solana-testnet",
+    "protocol": {
+      "endpointV2": "76y77prsiCMvXMjuoZ5VRrhG5qYBrUMYTE5WgHqgjEn6",
+      "sendUln302": "7a4WjyR8VZ7yZz5XJAKm39BUGn5iT9CKcv2pmG9tdXVH",
+      "receiveUln302": "7a4WjyR8VZ7yZz5XJAKm39BUGn5iT9CKcv2pmG9tdXVH",
+      "executor": "6doghB248px58JSSwG4qejQ46kFMW4AMj7vzJnWZHNZn",
+      "dvnProgram": "HtEYV4xB4wvsj5fgTkcfuChYpvGYzgzwvNhgDZQNh7wW"
+    },
+    "requiredDvns": [
+      {
+        "name": "LayerZero Labs",
+        "address": "4VDjp6XQaxoZf5RGwiPU9NR1EXSZn2TP4ATMmiSzLfhb"
+      },
+      {
+        "name": "Paxos",
+        "address": "4HxXbLv37XrivKukEbofybpHr7C8HUGJzd4B5T9USpGh"
+      }
+    ],
+    "optionalDvns": []
+  }
+}
